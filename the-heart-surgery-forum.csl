@@ -35,14 +35,8 @@
       <et-al font-style="normal"/>
       <substitute>
         <names variable="editor"/>
-        <text macro="title-fallback-author"/>
       </substitute>
     </names>
-  </macro>
-
-  <!-- last-resort fallback so the style never breaks on an item with no author/editor -->
-  <macro name="title-fallback-author">
-    <text value=""/>
   </macro>
 
   <!-- ============ SHARED PIECES ============ -->
@@ -77,14 +71,14 @@
         <text variable="title"/>
         <text variable="container-title" form="long"/>
       </group>
-      <group delimiter="" suffix=".">
+      <group delimiter="; " suffix=".">
         <date variable="issued">
           <date-part name="year"/>
         </date>
-        <text value="; "/>
-        <text variable="volume"/>
-        <text value=": "/>
-        <text variable="page"/>
+        <group delimiter=": ">
+          <text variable="volume"/>
+          <text variable="page"/>
+        </group>
       </group>
       <text macro="doi"/>
       <text macro="language-note"/>
@@ -155,8 +149,8 @@
       </group>
       <text value="Available at:"/>
       <text variable="URL"/>
-      <group prefix="(" suffix=")">
-        <text value="Accessed: "/>
+      <group prefix="(" suffix=")" delimiter=": ">
+        <text term="accessed" text-case="capitalize-first"/>
         <date variable="accessed">
           <date-part name="day"/>
           <date-part name="month" prefix=" "/>
